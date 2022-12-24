@@ -33,7 +33,7 @@ function List() {
             "Deadline": "22nd Nov 2022", 
             "Logo": "https://www.lendenclub.com/wp-content/uploads/2020/09/LDC_Light.png",
             "Status":"Completed",
-            "Discord":"", 
+            "Discord":"https://discord.gg/dffp5Cvyqj", 
             "Updates": {
                 "1": {"msg": "Registration Phase", "link": "https://classroom.google.com/c/NDk2MjI5MTMyMTIy/p/NTA3NDQyMDUzODk3/details"},
                 "2":{"msg":"Shortlisted Students are displayed on Classroom","link":"https://classroom.google.com/c/NDk2MjI5MTMyMTIy/p/NTA3NTE3MjE1ODQx/details"},
@@ -76,7 +76,7 @@ function List() {
                                 <br />
                                 <div className='carddiv'>
                                     <div>Status: <span style={{ color: currentStatusIndicator[item["Status"]] }}>{item["Status"]}</span></div>
-                                    <div><a href="https://discord.gg/dffp5Cvyqj"><img style={{ width: "2em" }} src='https://cdn-icons-png.flaticon.com/512/2111/2111370.png'></img></a></div>
+                                    <div><a href={item["Discord"]}><img style={{ width: "2em" }} src='https://cdn-icons-png.flaticon.com/512/2111/2111370.png'></img></a></div>
                                     <div>Add to WatchList</div>
                                 </div>
                                 <br />
