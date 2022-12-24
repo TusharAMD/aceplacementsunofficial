@@ -66,8 +66,30 @@
 .carddiv{
   display: flex;
   justify-content: space-between;
+  font-family: 'Poppins', sans-serif;
 }
 .carddiv >*{
   flex:0 0 0 auto;
   flex-grow: 1;
 }
+.updatenotify{
+  font-family: 'Raleway', sans-serif;
+}
+
+.eachupdate{
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+.eachupdate >*{
+  flex:0 1 1 auto;
+  text-align: center;
+}
+
+.eachupdate:nth-child(odd) {
+  background-color: #e3f3d4;
+}
+.eachupdate:nth-child(even) {
+  background-color: #c5ee9f;
+}
+
