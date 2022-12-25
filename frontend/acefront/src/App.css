@@ -93,3 +93,20 @@
   background-color: #c5ee9f;
 }
 
+.admindiv{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.UpdateEntry{
+  background-color: white;
+  width: 80vw;
+  padding: 10px;
+}
+.NewEntry{
+  background-color: white;
+  width: 80vw;
+  padding: 10px;
+}

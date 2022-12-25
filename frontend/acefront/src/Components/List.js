@@ -1,11 +1,25 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Collapse from 'react-bootstrap/Collapse';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+ 
 
 function List() {
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState([])
+    const [array,setArray] = useState([])
+    const [open1,setOpen1] = useState(false)
+    useEffect(() => {
+        axios.get(`http://127.0.0.1:5000/listofcompanies`)
+        .then(res => {
+            const data = res.data;
+            setArray(data.data);
+            setOpen(Array(data.data.length).fill(false))
+            //console.log(data.data.length)
+            //console.log(Array(data.data.length).fill(false))
 
+        })
+      }, []);
     return (
         <div className="list">
 
@@ -21,12 +35,11 @@ function List() {
         </div>
     )
     function Companies() {
-        let color1 = "green"
-        let color2 = "red"
 
-        let currentStatusIndicator = {"Registration Open":"green","Ongoing":"#808080","Completed":"red"}
 
-        let array = [{ 
+        let currentStatusIndicator = {"Registration Open":"#33FF57","Ongoing":"#33C8FF  ","Completed":"#880808"}
+
+        /*let array = [{ 
             "Name": "Lenden Club", 
             "Package": "7", 
             "DatePosted": "21th Nov 2022", 
@@ -41,7 +54,7 @@ function List() {
                 "4":{"msg":"Interview Call","link":"https://classroom.google.com/c/NDk2MjI5MTMyMTIy/p/NTA5MDU3ODg3MTE0/details"},
                 "5":{"msg":"Final Selection Done","link":""},
                 } 
-        }]
+        }]*/
 
         return (<>
             {array.map((item, index) => {
@@ -75,15 +88,15 @@ function List() {
                                 </div>
                                 <br />
                                 <div className='carddiv'>
-                                    <div>Status: <span style={{ color: currentStatusIndicator[item["Status"]] }}>{item["Status"]}</span></div>
+                                    <div style={{backgroundColor:"white"}}>Status: <span style={{ color: currentStatusIndicator[item["Status"]] }}>{item["Status"]}</span></div>
                                     <div><a href={item["Discord"]}><img style={{ width: "2em" }} src='https://cdn-icons-png.flaticon.com/512/2111/2111370.png'></img></a></div>
                                     <div>Add to WatchList</div>
                                 </div>
                                 <br />
                                 
-                                <Button  onClick={() => setOpen(!open)} variant="primary">See all Updates</Button>
+                                <Button  onClick={(e) => {onShowUpdateHandler(e,index); setOpen1(!open1)}} variant="primary">See all Updates</Button>
                                 
-                                <Collapse in={open}>
+                                <Collapse in={open[index]}>
                                     <div className='updatenotify'>
                                         <Updatesnotifier item={item} />
                                     </div>
@@ -101,7 +114,7 @@ function List() {
 
     function Updatesnotifier(props){
         let updatearray = props.item.Updates;
-        console.log(updatearray)
+        //console.log(updatearray)
         return(<>
         <br/>
         <ol>
@@ -124,6 +137,13 @@ function List() {
         }
         </ol>
         </>)
+    }
+
+    function onShowUpdateHandler(e,index){
+        //console.log(open[index])
+        let tempopen = open
+        tempopen[index] = !tempopen[index]
+        setOpen(tempopen)
     }
 }
 export default List
